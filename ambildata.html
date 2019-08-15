@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API</title>
+	<link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Skranji&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Puritan|Skranji&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background-image: linear-gradient(to right, pink , white);		}
+		h2{
+			font-family: 'Skranji', cursive;
+		}
+		th{
+			font-family: 'Pathway Gothic One', sans-serif;
+			font-size: 18px;
+		}
+		td{
+			font-family: 'Puritan', sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<div id="box">
+			<h2 >A M B I L     A P I</h2>
+			<table border="1" width="50%" class="tabel" id="employee_table">
+	        	<tr>
+	            <th id="1">ID</th>
+	            <th id="2">Employee Name</th>
+	            <th id="3">Employee Salary</th>
+	            <th id="4">Employee Age</th>
+	        	</tr>
+	    	</table>
+    	</div>
+	</center>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $.ajax({url: "http://dummy.restapiexample.com/api/v1/employees", success: function(result){
+    	var temp = JSON.parse(result);
+    $(function(){
+    	var employee_data = '';
+    $.each(temp, function(key, value){
+    	employee_data += '<tr>';
+    	employee_data += '<td>'+value.id+'</td>';
+    	employee_data += '<td>'+value.employee_name+'</td>';
+    	employee_data += '<td>'+value.employee_salary+'</td>';
+    	employee_data += '<td>'+value.employee_age+'</td>';
+    	employee_data += '<tr>';
+    });
+
+    $('#employee_table').append(employee_data);
+
+	});
+  	}});
+    </script>
+</body>
+</html>
